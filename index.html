@@ -1,43 +1,192 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFZ72L5FPQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-TFZ72L5FPQ');
-    </script>
-    <title>Hydra Proxy</title>
-    <link rel="icon" type="image/x-icon" href="/logo.png">
-    <link rel="stylesheet" href="/src/styles.css">
-    <meta property="og:title" content="Hydra Proxy">
-    <meta property="og:description" content="The Hydra Proxy Can Unblock Most Sites For Devices That Have Web Restrictions This is Mostly Used For School And Work Proxy Made By Ozzy">
-    <meta property="og:image" content="/storage/images/main/logo.png">
-    <meta property="og:image:width" content="200">
-    <meta property="og:image:height" content="200">
-    <meta name="theme-color" content="#0d0d0d">
-    <meta name="msapplication-TileColor" content="#262261">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cloaked title to disguise the site from strict keyword filters -->
+    <title>Mathematics Study Portal & Resource Hub</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-color: #1e293b;
+            --accent-color: #3b82f6;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--card-color);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #334155;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Disguise description paragraph */
+        .edu-notice {
+            background-color: #1e293b;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--accent-color);
+        }
+
+        .game-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .game-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Fullscreen Game Frame Modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 999; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            line-index: 50px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            color: #ef4444;
+        }
+    </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="uv.png">
+
+    <header>
+        <h1 id="site-title">Mathematics Study Hub</h1>
+        <p class="subtitle">Interactive Logic Modules & Probability Simulators</p>
+    </header>
+
+    <div class="container">
+        <div class="edu-notice">
+            <strong>Notice:</strong> This repository serves as an open resource environment exploring physics modules, canvas element acceleration, and logical reasoning algorithms.
+        </div>
+
+        <!-- Add or remove games in this grid -->
+        <div class="game-grid" id="grid">
+            <!-- Game 1 -->
+            <div class="game-card" onclick="openGame('https://v6.rocks')">
+                <div class="game-icon">🚀</div>
+                <div class="game-title">Physics Sandbox</div>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card" onclick="openGame('https://minecraft.net')">
+                <div class="game-icon">🧱</div>
+                <div class="game-title">Voxel Geometry Matrix</div>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card" onclick="openGame('https://playtictactoe.org')">
+                <div class="game-icon">❌</div>
+                <div class="game-title">Combinatorics Node Map</div>
+            </div>
+        </div>
     </div>
-    <h2 style="margin-top: 5px;">Hydra Proxy</h2>
-    <p style="opacity: 1; margin-top: 10px; color: #000;">The Hydra Proxy is Used For Unblocking Sites That Are Blocked By Devices With Web Restrictions</p>
-    <div class="search-container">
-        <form id="uv-form">
-            <input id="uv-search-engine" value="https://www.bing.com/search?q=%s" type="hidden"/> 
-            <input id="uv-address" type="text" placeholder="Search Bing Or Type A URL" />
-        </form>
+
+    <!-- The Iframe Viewport Layer -->
+    <div id="gameModal" class="modal">
+        <span class="close-btn" onclick="closeGame()">&times;</span>
+        <iframe class="modal-content" id="gameFrame" src=""></iframe>
     </div>
-    <script src="/src/script.js" defer></script>
-    <script src="/static/uv/uv.bundle.js" defer></script>
-    <script src="/static/uv/uv.config.js" defer></script>
-    <script src="/static/register-sw.js" defer></script>
-    <script src="/static/search.js" defer></script>
-    <script src="/static/index.js" defer></script>
-    <script src="/static/error.js" defer></script>
+
+    <script>
+        function openGame(url) {
+            document.getElementById('gameFrame').src = url;
+            document.getElementById('gameModal').style.display = "block";
+            document.body.style.overflow = "hidden"; // Block page scrolling behind game
+        }
+
+        function closeGame() {
+            document.getElementById('gameModal').style.display = "none";
+            document.getElementById('gameFrame').src = "";
+            document.body.style.overflow = "auto"; // Restore scrolling
+        }
+    </script>
 </body>
 </html>
+
