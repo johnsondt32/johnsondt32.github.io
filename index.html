@@ -10,9 +10,10 @@
             --text-color: #ffffff;
             --accent-color: #4f46e5;
             --accent-hover: #4338ca;
+            --danger-color: #ef4444;
+            --danger-hover: #dc2626;
             --card-bg: #1e1e24;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -24,7 +25,6 @@
             align-items: center;
             min-height: 100vh;
         }
-
         header {
             width: 100%;
             padding: 20px 0;
@@ -33,13 +33,11 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             margin-bottom: 40px;
         }
-
         h1 {
             margin: 0;
             font-size: 2.5rem;
             letter-spacing: 1px;
         }
-
         .container {
             width: 90%;
             max-width: 1000px;
@@ -48,8 +46,7 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* Play Button Styling */
+        /* Button Styling */
         .play-btn {
             background-color: var(--accent-color);
             color: white;
@@ -63,16 +60,30 @@
             box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
             margin-bottom: 30px;
         }
-
         .play-btn:hover {
             background-color: var(--accent-hover);
             transform: translateY(-2px);
         }
-
         .play-btn:active {
             transform: translateY(1px);
         }
-
+        /* Close Button Styling */
+        .close-btn {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 15px;
+            align-self: flex-end; /* Aligns button to the top right of the wrapper */
+        }
+        .close-btn:hover {
+            background-color: var(--danger-hover);
+        }
         /* Game Frame Wrapper */
         .game-wrapper {
             display: none; /* Hidden until button is clicked */
@@ -83,15 +94,17 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             margin-bottom: 50px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
-
-        /* Maintains a nice 16:9 or similar ratio container */
+        /* Aspect ratio box to keep the frame responsive */
         .iframe-container {
             position: relative;
             width: 100%;
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
-
         .iframe-container iframe {
             position: absolute;
             top: 0;
@@ -99,47 +112,48 @@
             width: 100%;
             height: 100%;
             border: none;
+            border-radius: 6px;
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>School Games Hub</h1>
     </header>
-
     <div class="container">
         <!-- Button to trigger the game -->
         <button class="play-btn" id="loadGameBtn">Play Run 3</button>
-
+        
         <!-- Game container wrapper -->
-        <div class="game-wrapper" id="gameWrapper">
+        <div class="game-wrapper" id="gameWrapper" style="display: none;">
+            <!-- New Close Button -->
+            <button class="close-btn" id="closeGameBtn">Close Game</button>
             <div class="iframe-container">
-                <!-- The iframe stays blank until injected by JS for faster page load -->
                 <iframe id="gameFrame" allowfullscreen scrolling="no"></iframe>
             </div>
         </div>
     </div>
-
     <script>
         const loadGameBtn = document.getElementById('loadGameBtn');
+        const closeGameBtn = document.getElementById('closeGameBtn');
         const gameWrapper = document.getElementById('gameWrapper');
         const gameFrame = document.getElementById('gameFrame');
 
+        // Open Game
         loadGameBtn.addEventListener('click', () => {
-            // Set the source of the iframe to the Run 3 URL you provided
             gameFrame.src = "https://chompypotato.github.io/run3/";
-            
-            // Show the game container
-            gameWrapper.style.display = "block";
-            
-            // Optional: Hide the button after clicked, or change text
-            loadGameBtn.style.display = "none";
-            
-            // Smoothly scroll down to the game
+            gameWrapper.style.display = "flex"; // Reveals container
+            loadGameBtn.style.display = "none"; // Hides play button
             gameWrapper.scrollIntoView({ behavior: 'smooth' });
         });
-    </script>
 
+        // Close Game
+        closeGameBtn.addEventListener('click', () => {
+            gameFrame.src = ""; // Stops the game audio/loading instantly
+            gameWrapper.style.display = "none"; // Hides container
+            loadGameBtn.style.display = "inline-block"; // Brings back play button
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls back to top smoothly
+        });
+    </script>
 </body>
 </html>
