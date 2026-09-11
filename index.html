@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Games Hub</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --text-color: #ffffff;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --card-bg: #1e1e24;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Play Button Styling */
+        .play-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .play-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .play-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Game Frame Wrapper */
+        .game-wrapper {
+            display: none; /* Hidden until button is clicked */
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin-bottom: 50px;
+        }
+
+        /* Maintains a nice 16:9 or similar ratio container */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Games Hub</h1>
+    </header>
+
+    <div class="container">
+        <!-- Button to trigger the game -->
+        <button class="play-btn" id="loadGameBtn">Play Run 3</button>
+
+        <!-- Game container wrapper -->
+        <div class="game-wrapper" id="gameWrapper">
+            <div class="iframe-container">
+                <!-- The iframe stays blank until injected by JS for faster page load -->
+                <iframe id="gameFrame" allowfullscreen scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loadGameBtn = document.getElementById('loadGameBtn');
+        const gameWrapper = document.getElementById('gameWrapper');
+        const gameFrame = document.getElementById('gameFrame');
+
+        loadGameBtn.addEventListener('click', () => {
+            // Set the source of the iframe to the Run 3 URL you provided
+            gameFrame.src = "https://chompypotato.github.io/run3/";
+            
+            // Show the game container
+            gameWrapper.style.display = "block";
+            
+            // Optional: Hide the button after clicked, or change text
+            loadGameBtn.style.display = "none";
+            
+            // Smoothly scroll down to the game
+            gameWrapper.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
